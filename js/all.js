@@ -37,9 +37,9 @@ function addTask() {
     }
 
     if (!!inputText) {
-        updateTaskList();
         storageDataArr.push(storageObj);
         localStorage.setItem('storageList', JSON.stringify(storageDataArr));
+        updateTaskList();
     } else {
         alert('請輸入待辦事項！');
     }
