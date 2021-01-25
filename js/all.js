@@ -10,8 +10,7 @@ const tasklList = document.querySelectorAll('.task_list')[0];
 task_container.addEventListener('click', removeSingleTask);
 task_container.addEventListener('click', removeAllTasks);
 task_container.addEventListener('click', updateTask);
-
-
+task_container.addEventListener('click', moveTask);
 taskInput.addEventListener('focus', function () {
     taskAddBlock.classList.add('-on');
 });
@@ -24,7 +23,7 @@ taskInput.addEventListener('keyup', function (e) {
 taskAddButton.addEventListener('click', addTask);
 
 
-// 函式：新增任務
+// 函式：新增事項
 function addTask() {
     let inputText = taskInput.value.trim();
     let taskItem = document.createElement('li');
@@ -89,7 +88,7 @@ function removeAllTasks(e) {
     }
 }
 
-// 函式：清空特定任務
+// 函式：清空特定事項
 function removeSingleTask(e) {
     e.preventDefault();
     if (e.target.classList.contains('btn_delete')) {
@@ -105,7 +104,7 @@ function removeSingleTask(e) {
     }
 }
 
-// 函式：更新任務內容
+// 函式：更新事項內容
 function updateTask(e) {
     e.preventDefault();
     if (e.target.classList.contains('btn_update')) {
@@ -121,6 +120,29 @@ function updateTask(e) {
         } else {
             alert('請輸入更新內容！');
             thisUpdateInput.classList.remove('-none');
+        }
+    }
+}
+
+// 函式：移動事項
+function moveTask(e) {
+    e.preventDefault();
+
+    if (e.target.classList.contains('btn_up')) {
+        let thisTask = e.target.closest('div.item_flex').parentNode;
+        let prevTask = thisTask.previousElementSibling;
+
+        if (tasklList.firstElementChild !== thisTask) {
+            prevTask.outerHTML = thisTask.outerHTML;
+            thisTask.outerHTML = prevTask.outerHTML;
+        }
+    } else if (e.target.classList.contains('btn_down')) {
+        let thisTask = e.target.closest('div.item_flex').parentNode;
+        let nextTask = thisTask.nextElementSibling;
+
+        if (tasklList.lastElementChild !== thisTask) {
+            nextTask.outerHTML = thisTask.outerHTML;
+            thisTask.outerHTML = nextTask.outerHTML;
         }
     }
 }
