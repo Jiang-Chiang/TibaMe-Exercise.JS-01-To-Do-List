@@ -168,7 +168,7 @@ div.task_list_parent{
   .-none{
     display: none;
   }
-  
+
   div.task_list_parent ul.task_list > li:first-child button.btn_up{
     background-color: lightgray !important;
     cursor: not-allowed !important;
@@ -194,4 +194,17 @@ button.btn_empty{
     outline: none;
     font-size: 1.6rem;
     cursor: pointer;
+  }
+
+  /* ===== 重要性的星號 ===== */
+div.star_block{
+    display: inline-block;
+  }
+  div.star_block > span.star{
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 3px;
+  }
+  div.star_block > span.star.-on{
+    color: yellow;
   }

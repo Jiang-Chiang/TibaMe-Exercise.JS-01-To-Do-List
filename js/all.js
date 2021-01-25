@@ -11,6 +11,7 @@ task_container.addEventListener('click', removeSingleTask);
 task_container.addEventListener('click', removeAllTasks);
 task_container.addEventListener('click', updateTask);
 task_container.addEventListener('click', moveTask);
+task_container.addEventListener('click', setTaskLevel);
 taskInput.addEventListener('focus', function () {
     taskAddBlock.classList.add('-on');
 });
@@ -143,6 +144,38 @@ function moveTask(e) {
         if (tasklList.lastElementChild !== thisTask) {
             nextTask.outerHTML = thisTask.outerHTML;
             thisTask.outerHTML = nextTask.outerHTML;
+        }
+    }
+}
+
+// 函式：設定事項等級
+function setTaskLevel(e) {
+    e.preventDefault();
+
+    if (e.target.nodeName == 'path') {
+        let star_block = e.target.closest('div.star_block');
+        let stars = star_block.querySelectorAll('.star');
+        let selectStar = e.target.closest('span.star');
+        let setLevel = selectStar.dataset.star;
+        let currentLevel = 0;
+
+        for (let i = 0; i < stars.length; i++) {
+            if (stars[i].classList.contains('-on')) {
+                currentLevel++;
+            }
+        }
+
+        if (setLevel > currentLevel) {
+            for (let i = 0; i < setLevel; i++) {
+                stars[i].classList.add('-on');
+            }
+        } else {
+            for (let i = 0; i < stars.length; i++) {
+                stars[i].classList.remove('-on');
+            }
+            for (let i = 0; i < setLevel; i++) {
+                stars[i].classList.add('-on');
+            }
         }
     }
 }
