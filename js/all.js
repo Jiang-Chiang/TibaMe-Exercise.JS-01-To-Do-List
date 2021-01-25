@@ -9,6 +9,8 @@ const tasklList = document.querySelectorAll('.task_list')[0];
 // 監聽事件
 task_container.addEventListener('click', removeSingleTask);
 task_container.addEventListener('click', removeAllTasks);
+task_container.addEventListener('click', updateTask);
+
 
 taskInput.addEventListener('focus', function () {
     taskAddBlock.classList.add('-on');
@@ -44,6 +46,7 @@ function addTask() {
                 <span class="star" data-star="5"><i class="fas fa-star"></i></span>
             </div>
             <p class="para">${inputText}</p>
+            <input type="text" class="task_name_update -none" placeholder="更新待辦事項…" value="${inputText}">
             </div>
             <div class="right_block">
             <div class="btn_flex">
@@ -53,8 +56,10 @@ function addTask() {
             </div>
         </div>`;
 
-    if (!!inputText !== false) {
+    if (!!inputText) {
         tasklList.insertBefore(taskItem, tasklList.childNodes[0]);
+    } else {
+        alert('請輸入待辦事項！');
     }
 
     document.querySelectorAll('.task_name')[0].value = '';
@@ -64,17 +69,22 @@ function addTask() {
 function removeAllTasks(e) {
     e.preventDefault();
     if (e.target.classList.contains('btn_empty')) {
-        let r = confirm('確定要移除全部任務？');
 
-        if (r) {
-            let allTasks = document.querySelectorAll('li');
+        if (!!tasklList.innerText) {
+            let r = confirm('確定要移除全部待辦事項？');
 
-            for (let i = 0; i < allTasks.length; i++) {
-                allTasks[i].classList.add('fade_out');
-                setTimeout(function () {
-                    allTasks[i].remove();
-                }, 800)
+            if (r) {
+                let allTasks = document.querySelectorAll('li');
+
+                for (let i = 0; i < allTasks.length; i++) {
+                    allTasks[i].classList.add('fade_out');
+                    setTimeout(function () {
+                        allTasks[i].remove();
+                    }, 800)
+                }
             }
+        } else {
+            alert('沒有資料需要清空！');
         }
     }
 }
@@ -83,7 +93,7 @@ function removeAllTasks(e) {
 function removeSingleTask(e) {
     e.preventDefault();
     if (e.target.classList.contains('btn_delete')) {
-        let r = confirm('確定要移除這項任務？');
+        let r = confirm('確定要移除這個待辦事項？');
 
         if (r) {
             let thisTask = e.target.closest('div.item_flex').parentNode;
@@ -92,6 +102,25 @@ function removeSingleTask(e) {
                 thisTask.remove();
             }, 800)
         }
+    }
+}
 
+// 函式：更新任務內容
+function updateTask(e) {
+    e.preventDefault();
+    if (e.target.classList.contains('btn_update')) {
+        let thisTask = e.target.closest('div.item_flex').parentNode;
+        let thisTaskText = thisTask.querySelectorAll('.para')[0];
+        let thisUpdateInput = thisTask.querySelectorAll('.task_name_update')[0];
+        let thisUpdateInputText = thisUpdateInput.value.trim();
+
+        thisUpdateInput.classList.toggle('-none');
+
+        if (!!thisUpdateInputText) {
+            thisTaskText.innerHTML = thisUpdateInputText;
+        } else {
+            alert('請輸入更新內容！');
+            thisUpdateInput.classList.remove('-none');
+        }
     }
 }

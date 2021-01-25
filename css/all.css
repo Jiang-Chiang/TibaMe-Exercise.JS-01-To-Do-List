@@ -152,6 +152,22 @@ div.task_list_parent{
     cursor: pointer;
     border: 1px solid #eee;
   }
+  div.middle_block input.task_name_update{
+    width: 100%;
+    border: 1px solid lightgray;
+    border-radius: 3px 0 0 3px;
+    height: 40px;
+    font-size: 2rem;
+    padding: 5px 10px;
+    outline: none;
+  }
+  div.middle_block input.task_name_update::placeholder{
+    color: lightgray;
+  }
+  
+  .-none{
+    display: none;
+  }
 
   /* ===== 清空按鈕 ===== */
 button.btn_empty{
