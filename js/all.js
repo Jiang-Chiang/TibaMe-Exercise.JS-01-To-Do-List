@@ -156,6 +156,15 @@ function updateTask(e) {
 
         if (!!thisUpdateInputText) {
             thisTaskText.innerHTML = thisUpdateInputText;
+
+            for (let i = 0; i < storageDataArr.length; i++) {
+                if (storageDataArr[i].taskId == thisTask.dataset.id
+                ) {
+                    storageDataArr[i].taskSubject = thisUpdateInputText;
+                    localStorage.setItem('storageList', JSON.stringify(storageDataArr));
+                }
+            }
+
         } else {
             alert('請輸入更新內容！');
             thisUpdateInput.classList.remove('-none');
