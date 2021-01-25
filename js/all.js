@@ -36,11 +36,10 @@ function addTask() {
         taskLevel: 0
     }
 
-    storageDataArr.push(storageObj);
-    localStorage.setItem('storageList', JSON.stringify(storageDataArr));
-
     if (!!inputText) {
         updateTaskList();
+        storageDataArr.push(storageObj);
+        localStorage.setItem('storageList', JSON.stringify(storageDataArr));
     } else {
         alert('請輸入待辦事項！');
     }
