@@ -93,7 +93,6 @@ function updateTaskList() {
     tasklList.innerHTML = str;
 }
 
-
 // 函式：淨空清單
 function removeAllTasks(e) {
     e.preventDefault();
@@ -212,7 +211,6 @@ function moveTask(e) {
 
     localStorage.setItem('storageList', JSON.stringify(storageDataArr));
 }
-
 
 // 函式：設定事項等級
 function setTaskLevel(e) {
