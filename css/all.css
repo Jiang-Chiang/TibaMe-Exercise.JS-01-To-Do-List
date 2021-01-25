@@ -152,3 +152,19 @@ div.task_list_parent{
     cursor: pointer;
     border: 1px solid #eee;
   }
+
+  /* ===== 清空按鈕 ===== */
+button.btn_empty{
+    float: right;
+    background: none;
+    background-color: white;
+    padding: 0;
+    margin: 0;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    height: 30px;
+    width: 50px;
+    outline: none;
+    font-size: 1.6rem;
+    cursor: pointer;
+  }

@@ -1,10 +1,15 @@
 // 變數宣告
+const task_container = document.querySelectorAll('.task_container')[0];
+const removeAllTasksButton = document.querySelectorAll('.btn_empty')[0];
 const taskAddBlock = document.querySelectorAll('.task_add_block')[0];
 const taskInput = document.querySelectorAll('.task_name')[0];
 const taskAddButton = document.querySelectorAll('.task_add')[0];
 const tasklList = document.querySelectorAll('.task_list')[0];
 
 // 監聽事件
+task_container.addEventListener('click', removeSingleTask);
+task_container.addEventListener('click', removeAllTasks);
+
 taskInput.addEventListener('focus', function () {
     taskAddBlock.classList.add('-on');
 });
@@ -17,6 +22,7 @@ taskInput.addEventListener('keyup', function (e) {
 taskAddButton.addEventListener('click', addTask);
 
 
+// 函式：新增任務
 function addTask() {
     let inputText = taskInput.value.trim();
     let taskItem = document.createElement('li');
@@ -52,4 +58,40 @@ function addTask() {
     }
 
     document.querySelectorAll('.task_name')[0].value = '';
-};
+}
+
+// 函式：淨空清單
+function removeAllTasks(e) {
+    e.preventDefault();
+    if (e.target.classList.contains('btn_empty')) {
+        let r = confirm('確定要移除全部任務？');
+
+        if (r) {
+            let allTasks = document.querySelectorAll('li');
+
+            for (let i = 0; i < allTasks.length; i++) {
+                allTasks[i].classList.add('fade_out');
+                setTimeout(function () {
+                    allTasks[i].remove();
+                }, 800)
+            }
+        }
+    }
+}
+
+// 函式：清空特定任務
+function removeSingleTask(e) {
+    e.preventDefault();
+    if (e.target.classList.contains('btn_delete')) {
+        let r = confirm('確定要移除這項任務？');
+
+        if (r) {
+            let thisTask = e.target.closest('div.item_flex').parentNode;
+            thisTask.classList.add('fade_out');
+            setTimeout(function () {
+                thisTask.remove();
+            }, 800)
+        }
+
+    }
+}
