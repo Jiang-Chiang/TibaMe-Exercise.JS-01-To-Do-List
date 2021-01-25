@@ -66,7 +66,7 @@ function updateTaskList() {
                 <div class="star_block">`;
 
         let taskLevel = storageDataArr[i].taskLevel;
-        for (let j = 0; j < 6; j++) {
+        for (let j = 0; j < 5; j++) {
             if ((taskLevel - 0) > 0) {
                 str += `<span class="star -on" data-star="${j + 1}"><i class="fas fa-star"></i></span>`;
                 taskLevel--;
