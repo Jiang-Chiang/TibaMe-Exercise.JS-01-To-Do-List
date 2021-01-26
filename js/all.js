@@ -62,7 +62,7 @@ function updateTaskList() {
                 </div>
                 </div>
                 <div class="middle_block">
-                <div class="star_block">`;
+                <div class="star_block">`
 
         let taskLevel = storageDataArr[i].taskLevel;
         for (let j = 0; j < 5; j++) {
@@ -187,8 +187,8 @@ function moveTask(e) {
             }
         }
 
-        let prevTaskCopy = Object.assign({}, storageDataArr[thisStorageIndex - 1])
-        let thisTaskCopy = Object.assign({}, storageDataArr[thisStorageIndex])
+        let prevTaskCopy = storageDataArr[thisStorageIndex - 1];
+        let thisTaskCopy = storageDataArr[thisStorageIndex];
 
         if (tasklList.firstElementChild !== thisTask) {
             prevTask.outerHTML = thisTask.outerHTML;
@@ -206,8 +206,8 @@ function moveTask(e) {
             }
         }
 
-        let thisTaskCopy = Object.assign({}, storageDataArr[thisStorageIndex])
-        let nextTaskCopy = Object.assign({}, storageDataArr[thisStorageIndex + 1])
+        let thisTaskCopy = storageDataArr[thisStorageIndex];
+        let nextTaskCopy = storageDataArr[thisStorageIndex + 1];
 
         if (tasklList.lastElementChild !== thisTask) {
             nextTask.outerHTML = thisTask.outerHTML;
