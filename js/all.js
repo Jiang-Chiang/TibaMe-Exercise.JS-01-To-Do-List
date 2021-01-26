@@ -152,8 +152,6 @@ function updateTask(e) {
         let thisUpdateInput = thisTask.querySelectorAll('.task_name_update')[0];
         let thisUpdateInputText = thisUpdateInput.value.trim();
 
-        thisUpdateInput.classList.toggle('-none');
-
         if (!!thisUpdateInputText) {
             thisTaskText.innerHTML = thisUpdateInputText;
 
@@ -163,11 +161,11 @@ function updateTask(e) {
                     storageDataArr[i].taskSubject = thisUpdateInputText;
                     localStorage.setItem('storageList', JSON.stringify(storageDataArr));
                 }
+                thisUpdateInput.classList.toggle('-none');
             }
 
         } else {
             alert('請輸入更新內容！');
-            thisUpdateInput.classList.remove('-none');
         }
     }
 }
